@@ -1,0 +1,221 @@
+package com.company;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // write your code here
+        @SuppressWarnings("resource")
+        Scanner input = new Scanner(System.in);
+        Random rand = new Random();
+
+
+        System.out.println("Welcome to my adventure game, So you have chosen to enter into the world of traps. Basically what you will need to do in this game is you will have certain quests and you need to pick options each time. Sounds simple ehh? but lemme tell you, although the choice is yours but your fate will largely depend on your luck! Wanna try? Then fill in your details fast!!");
+        System.out.println("--------------------------------");
+
+        System.out.println("Name plz: ");
+        String name = input.next();
+        System.out.println("and don't forget to enter your age:");
+        int age = input.nextInt();
+        if (age >= 10) {
+            System.out.println("age limit satisfied!");
+        } else {
+            System.out.println("Sorry! you are too small!");
+            System.exit(0);
+        }
+        System.out.println("--------------------------------");
+
+        System.out.println("Hello " + name + " Ready? then for what are u waiting? Press 1 to start!");
+        int Wantstostart = input.nextInt();
+        if (Wantstostart == 1) {
+            System.out.println("Ok lets start then");
+            System.out.println("--------------------------------");
+            System.out.println("--------------------------------");
+            Start(null);
+
+
+            int money = 100;
+            @SuppressWarnings("unused")
+            boolean Sword = false;
+            @SuppressWarnings("unused")
+            boolean Axe = false;
+            @SuppressWarnings("unused")
+            boolean Gun = false;
+            @SuppressWarnings("unused")
+            boolean Knife = false;
+            @SuppressWarnings("unused")
+            boolean Hand_Grenade = false;
+            String[] boss = {"boss1", "boss2"};
+            int maxhealthboss = 75;
+            int maxdamageboss = 25;
+            int damage = 0;
+            double health = 100;
+            int life = 3;
+            int health_up = 30;
+            boolean going = true;
+
+            System.out.println("****GAME STARTED****");
+
+
+            GAME:
+            while (going) {
+                System.out.println("\n\n\t***Face the enemy!***");
+                int boss_health = rand.nextInt(maxhealthboss);
+                String boss_to_fight = boss[rand.nextInt(boss.length)];
+                System.out.println("\n\n\t" + "fight with " + boss_to_fight);
+                while (boss_health > 0) {
+                    System.out.println("\tBoss health left= " + boss_health);
+                    System.out.println("\tYour health left= " + health);
+                    System.out.println("\n\t__WHAT DO YOU CHOOSE TO DO ?__");
+                    System.out.println("\t1. Attack the Boss!");
+                    System.out.println("\t2. Life!!.");
+                    System.out.println("\t3. Run away!");
+                    String in = input.nextLine();
+                    if (in.equals("1")) {
+
+                        System.out.println("Hey! Stop there is a shop. Wanna buy weapons? if yes, then get in!");
+                        String ans = input.next();
+                        if (ans == "yes") {
+                            System.out.println("Great!");
+
+                        } else {
+                            System.out.println("How can u proceed without weapon? Now get into the shop");
+
+                        }
+                        System.out.println("Hello, So what would you like to buy.. but remember it's in expense of your health ");
+                        System.out.println("--------------------------------");
+                        System.out.println("*****WEAPONS FOR YOUR SURVIVAL*****");
+                        System.out.println(" 1.Knife : health=10 pounds damage=20");
+                        System.out.println(" 2.Sword : health=30 pounds damage=40");
+                        System.out.println(" 3.Axe : health=20 pounds damage=30");
+                        System.out.println(" 4.Gun : health=40 pounds damage=50");
+                        System.out.println("5.Hand Grenade : health=50 pounds damage=60");
+                        System.out.println("--------------------------------");
+                        System.out.println("--------------------------------");
+                        int ATB1 = input.nextInt();
+                        if (ATB1 == 1) {
+                            health = health - 10;
+                            System.out.println("You have " + health+ " health left");
+                            Knife = true;
+                            damage = damage + 20;
+                            System.out.println("You have a knife now");
+                            System.out.println("--------------------------------");
+                            System.out.println("--------------------------------");
+                        }
+
+
+                        if (ATB1 == 2) {
+                            health = health - 30;
+                            System.out.println("You have " + health + " health left");
+                            Sword = true;
+                            damage = damage + 40;
+                            System.out.println("You have a sword now");
+                            System.out.println("--------------------------------");
+                            System.out.println("--------------------------------");
+
+                        }
+                        if (ATB1 == 3) {
+                            health = health - 20;
+                            System.out.println("You have " + health + " health left");
+                            Axe = true;
+                            damage = damage + 30;
+                            System.out.println("You have an axe now");
+                            System.out.println("--------------------------------");
+                            System.out.println("--------------------------------");
+                        }
+                        if (ATB1 == 4) {
+                            health = health - 40;
+                            System.out.println("You have " + health + " health left");
+                            Gun = true;
+                            damage = damage + 50;
+                            System.out.println("You have a Gun now");
+                            System.out.println("--------------------------------");
+                            System.out.println("--------------------------------");
+                        }
+                        if (ATB1 == 5) {
+                            health = health - 10;
+                            System.out.println("You have " + health + " health left");
+                            Hand_Grenade = true;
+                            damage = damage + 60;
+                            System.out.println("You have a Hand Grenade now");
+                            System.out.println("--------------------------------");
+                            System.out.println("--------------------------------");
+                        }
+                        int damageTaken = rand.nextInt(maxdamageboss);
+                        boss_health -= damage;
+                        health -= damageTaken;
+                        if (health < 1) {
+                            System.out.println("\t You are to weak to continue.");
+                            break;
+                        }
+                    } else if (in.equals("2")) {
+                        if (life > 0) {
+                            health += health_up;
+                            life--;
+                            System.out.println("\tYou used up your life, Your health now=" + health);
+                        } else {
+                            System.out.println("\tThere are no life available!!");
+                        }
+                    } else if (in.equals("3")) {
+                        System.out.println("\tYou chose to ran away from " + boss_to_fight);
+                        continue GAME;
+                    }
+
+                }
+                if (health < 1) {
+                    System.out.println("\t You are to weak for the battle.");
+                    break;
+                }
+                System.out.println("Well done you defeated the boss!!");
+                System.out.println("--------------------------------");
+                System.out.println("--------------------------------");
+
+                System.out.println("You see a homeless man on the streets will you spare 5 pound press 1 for yes or 2 for no: ");
+                System.out.println("--------------------------------");
+                System.out.println("--------------------------------");
+                int FRE1 = input.nextInt();
+
+                if (FRE1 == 1) {
+                    System.out.println("He thanks you and gives you a life but you have 5 less pound");
+                    money = money - 5;
+                    life++;
+                    System.out.println("You now have " + money + " money left");
+                    System.out.println("You now have " + life + " life");
+
+                }
+                if (FRE1 == 2) {
+                    System.out.println("You walk by him without paying him he tells you you will regret it later");
+                    System.out.println("You now have " + money + " pound left");
+                    System.out.println("You now have " + life + " life");
+
+                }
+                System.out.println("\t**CHOOSE AN OPTION**");
+                System.out.println("\t1. Continue the game ");
+                System.out.println("\t2. Exit.");
+                String in = input.nextLine();
+                while (!in.equals("1") && !in.equals("2")) {
+                    System.out.println("\tInvalid Option! Choose a valid one.");
+                    in = input.nextLine();
+                }
+                if (in.equals("1")) {
+                    System.out.println("\tContinue in the world of traps.Good luck!");
+                } else if (in.equals("2")) {
+                    System.out.println("\tSuccessful from your adventure.");
+                    break;
+                }
+            }
+
+
+            System.out.println("************************************");
+            System.out.println("------------------------------------");
+            System.out.println("\tTHANKS FOR PLAYING! VISIT AGAIN!");
+            System.out.println("------------------------------------");
+            System.out.println("************************************");
+        }
+    }
+
+    private static void Start(Object o) {
+    }
+}
